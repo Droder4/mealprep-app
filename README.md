@@ -1,41 +1,42 @@
-# Meal Prep AI Android App
+# MealPrepAI Android App
 
-A GitHub-first Android app that lets you:
-- take a photo of food or choose one from the gallery
-- send it to a vision-capable AI endpoint
-- get meal prep ideas, shopping add-ons, storage tips, and batch-cooking steps
+GitHub-first Android app that lets you:
+- take a picture of food
+- pick a food photo from gallery
+- get meal prep ideas from an AI vision API
 
-## Important
-This app needs an AI API key to analyze food photos. The source code does **not** include one.
+## What you need
+- A GitHub repo
+- GitHub Actions enabled
+- Your own AI API key
+- Optional: your own endpoint/model if you are not using the default values in the app
 
-## What is included
-- Kotlin + Jetpack Compose Android app
-- camera and gallery image input
-- settings screen for API key, endpoint, model, and meal-prep goal
-- GitHub Actions workflow to build a debug APK
+## Default app settings
+Inside the app, open **Settings** and enter:
+- **API Key**
+- **Endpoint**
+- **Model**
+- **Goal** (fat loss, high protein, cheap meals, bulk prep, etc.)
 
-## Use GitHub only
-You said you want this made with GitHub, not Android Studio. This repo is set up so you can:
-1. create a GitHub repo
-2. upload these files
-3. let GitHub Actions build the APK for you
-4. download the APK from the Actions artifacts
+The default endpoint in the app is:
+`https://api.openai.com/v1/chat/completions`
+
+The default model is:
+`gpt-4.1-mini`
+
+You can change both inside the app if your provider or model is different.
+
+## Upload to GitHub
+Upload the whole folder structure, including:
+- `app/`
+- `.github/workflows/android.yml`
+- `settings.gradle.kts`
+- `build.gradle.kts`
+- `gradle.properties`
 
 ## Build on GitHub
-Push the project to GitHub, then use the included workflow in `.github/workflows/android.yml`.
-
-When the workflow finishes, open the run and download the `MealPrepAI-debug-apk` artifact.
-
-## First run in the app
-Open **Settings** inside the app and add:
-- your API key
-- your API endpoint
-- your model name
-
-Defaults currently point to:
-- endpoint: `https://api.openai.com/v1/responses`
-- model: `gpt-4.1-mini`
+Open the **Actions** tab and run **Android APK Build**.
+When it finishes, download the artifact named **mealprep-debug-apk**.
 
 ## Notes
-- The network request format is set up for a Responses-style vision endpoint.
-- If your provider uses a different payload shape, update `MealPrepRepository.analyzePhoto()` in `MainActivity.kt`.
+This project is designed to build in GitHub Actions. It does not require Android Studio to exist as a project.
